@@ -120,6 +120,8 @@ class PrinterNeoPixel:
         index = gcmd.get_int('INDEX', None, minval=1, maxval=self.chain_count)
         transmit = gcmd.get_int('TRANSMIT', 1)
         # Update and transmit data
+        self.cmd_exec(red,green,blue,white,index,transmit)
+    def cmd_exec(self,red,green,blue,white,index=None,transmit=1):
         def reactor_bgfunc(print_time):
             with self.mutex:
                 self.update_color_data(red, green, blue, white, index)
