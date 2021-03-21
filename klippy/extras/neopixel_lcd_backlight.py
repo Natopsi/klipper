@@ -61,7 +61,7 @@ class PrinterNeoPixelBacklight:
             self.neopixel.cmd_exec(self.dim_red,self.dim_green,self.dim_blue,0)
             if self.timeout_off>0:
                 self.next = "OFF"
-                return eventtime + self.timeout_off
+                return eventtime + (self.timeout_off-self.timeout_dim)
             else:
                 self.next = "WAIT"
                 return self.reactor.NEVER
