@@ -36,7 +36,9 @@ class PrinterNeoPixelBacklight:
         gcode = self.printer.lookup_object('gcode')
         gcode.register_mux_command("LCD_WAKEUP", "LED", self.name, self.cmd_LCD_WAKEUP,
                                    desc=self.cmd_LCD_WAKEUP_help)
-        
+        gcode.register_mux_command("LCD_TIMEOUT", "LED", self.name, self.cmd_LCD_TIMEOUT,
+                                   desc=self.cmd_LCD_TIMEOUT_help)
+
         eventtime = self.reactor.monotonic() 
         self.timer = self.reactor.register_timer(self._update_callback)
 
@@ -44,15 +46,21 @@ class PrinterNeoPixelBacklight:
         self.printer.register_event_handler("ui:wakeup", self._handle_wakeup)
  
     cmd_LCD_WAKEUP_help = "Force wakeup of neopixel LCD backlight"
-    
+
     def cmd_LCD_WAKEUP(self, gcmd):
         self._handle_wakeup()
+
+    cmd_LCD_TIMEOUT_help = "Set timeouts for LCD backlight"
     
+    def cmd_LCD_TIMEOUT(self, gcmd):
+        self.timeout_dim = gcmd.get_float('DIM', self.timeout_dim / 60, minval=0., maxval=1E6)*60
+        self.timeout_off = gcmd.get_float('OFF', self.timeout_off / 60, minval=0., maxval=1E6)*60
+        self._handle_wakeup()
+
     def _handle_wakeup(self):
         logging.info("Received UI wakeup event")
         self.next = "ON"
         self.reactor.update_timer(self.timer,self.reactor.NOW)
-
         
     def _update_callback(self,eventtime):
         
