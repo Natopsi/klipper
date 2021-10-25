@@ -119,6 +119,7 @@ class ServerSocket:
         self.sock.setblocking(0)
         self.sock.bind(server_address)
         self.sock.listen(1)
+        os.chmod(server_address, 0o775)
         self.fd_handle = self.reactor.register_fd(
             self.sock.fileno(), self._handle_accept)
         printer.register_event_handler(
