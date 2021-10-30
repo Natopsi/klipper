@@ -1305,7 +1305,7 @@ Execute a gcode on a set delay after a klipper internal event.
 ```
 [event_gcode my_event_gcode]
 #event: klippy:none
-#   Name of the klipper internal event to register (raised 
+#   Name of the klipper internal event to register (raised
 #   by Printer.send_event() ).
 #   Default is "klippy:none"
 #gcode:

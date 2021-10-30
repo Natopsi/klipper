@@ -700,6 +700,18 @@ been enabled (also see the
   for gcode execution.  A value of 0 will cancel a pending delayed gcode
   from executing.
 
+### Event GCode
+
+The following command is enabled if a
+[event_gcode config section](Config_Reference.md#event_gcode) has
+been enabled:
+- `EVENT_GCODE_ENABLE [ID=<name>]`:  Enable the identified [event_gcode].
+- `EVENT_GCODE_DISABLE [ID=<name>]`:  Disable the identified [event_gcode].
+  Also cancels any execution planned.
+- `EVENT_GCODE_TRIGGER [ID=<name>]`:  Trigger the identified [event_gcode].
+- `EVENT_GCODE_CANCEL [ID=<name>]`:  Cancel a planned execution of
+  the identified [event_gcode].
+
 ### Save Variables
 
 The following command is enabled if a
