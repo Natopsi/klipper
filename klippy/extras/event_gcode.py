@@ -24,14 +24,21 @@ class EventGcode:
         
         self.last_execution = self.reactor.NOW
         
-        self.gcode.register_mux_command("EVENT_GCODE_ENABLE", "NAME", self.name, self.cmd_EVENT_GCODE_ENABLE,
-                                   desc=self.cmd_EVENT_GCODE_ENABLE_help)
-        self.gcode.register_mux_command("EVENT_GCODE_DISABLE", "NAME", self.name, self.cmd_EVENT_GCODE_DISABLE,
-                                   desc=self.cmd_EVENT_GCODE_DISABLE_help)
-        self.gcode.register_mux_command("EVENT_GCODE_TRIGGER", "NAME", self.name, self.cmd_EVENT_GCODE_TRIGGER,
-                                   desc=self.cmd_EVENT_GCODE_TRIGGER_help)
-        self.gcode.register_mux_command("EVENT_GCODE_CANCEL", "NAME", self.name, self.cmd_EVENT_GCODE_CANCEL,
-                                   desc=self.cmd_EVENT_GCODE_CANCEL_help)
+        self.gcode.register_mux_command("EVENT_GCODE_ENABLE",
+            "NAME", self.name, self.cmd_EVENT_GCODE_ENABLE,
+            desc=self.cmd_EVENT_GCODE_ENABLE_help)
+
+        self.gcode.register_mux_command("EVENT_GCODE_DISABLE",
+            "NAME",self.name, self.cmd_EVENT_GCODE_DISABLE,
+            desc=self.cmd_EVENT_GCODE_DISABLE_help)
+
+        self.gcode.register_mux_command("EVENT_GCODE_TRIGGER",
+            "NAME", self.name, self.cmd_EVENT_GCODE_TRIGGER,
+            desc=self.cmd_EVENT_GCODE_TRIGGER_help)
+
+        self.gcode.register_mux_command("EVENT_GCODE_CANCEL",
+           "NAME", self.name, self.cmd_EVENT_GCODE_CANCEL,
+            desc=self.cmd_EVENT_GCODE_CANCEL_help)
         
         self.printer.register_event_handler(self.event, self._handle_event)
 
