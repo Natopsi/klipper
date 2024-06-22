@@ -1040,6 +1040,7 @@ class MenuManager:
             self.down(True)
         elif key == 'back':
             self.back()
+        self.printer.send_event("ui:interaction")
         self.display.request_redraw()
 
     # Collection of manager class helper methods

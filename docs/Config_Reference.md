@@ -1459,6 +1459,36 @@ explicit idle_timeout config section to change the default settings.
 #   Idle time (in seconds) to wait before running the above G-Code
 #   commands. The default is 600 seconds.
 ```
+### [event_gcode]
+
+Execute a gcode on a set delay after a klipper internal event.
+
+```
+[event_gcode my_event_gcode]
+#event: klippy:none
+#   Name of the klipper internal event to register (raised
+#   by Printer.send_event() ).
+#   Default is "klippy:none"
+#gcode:
+#   A list of G-Code commands to execute after a klipper internal
+#   event. G-Code templates are supported. This parameter must be
+#   provided.
+#delay: 0.0
+#   The duration of the delay (in seconds). If set to a non-zero value,
+#   the event_gcode wil execute the specified number of seconds after
+#   the event is rised by klipper.
+#   non-zero value the delayed_gcode will execute the specified number
+#   Default is 0.
+#cooldown_delay: 0.0
+#   The duration of the delay (in seconds) to wait between two
+#   executions of the gcode.
+#   Default is 0.
+#enabled: True
+#   If True, the event will trigger execution of the gcode. Else event
+#   will be ignored.
+#   Default is True
+
+```
 
 ## Optional G-Code features
 
